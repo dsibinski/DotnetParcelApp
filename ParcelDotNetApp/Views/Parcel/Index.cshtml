@@ -1,0 +1,22 @@
+﻿@page
+@model ParcelDotNetApp.Views.Parcel.Index
+
+@{
+    ViewBag.Title = "Home";
+    // First, we need to have a common layout for all "Parcel views" (Razor views which "render" Parcel components)
+    // This view loads initial JavaScript, so the appropriate objects are available on the `window` object
+    Layout = "~/Views/Shared/_ParcelLayout.cshtml";
+}
+
+<div id="parcel-home-page"></div>
+
+@section scripts
+{
+    @* This script, specific to homeApp.js, will expose window.ParcelApplication.showHomePage function *@
+    @await Html.PartialAsync("~/Views/JsLinks/_homeApp_js.cshtml")
+
+    <script type="text/javascript">
+    // That's how we connect JS and HTML. Because the JS was called before, we have ParcelApplication.showHomePage available here now
+            ParcelApplication.showHomePage("parcel-home-page");
+    </script>
+}

@@ -1,0 +1,17 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parcel - @ViewBag.Title</title>
+</head>
+<body>
+
+<link rel="stylesheet" type="text/css" href="@Url.Content("~/ParcelScripts/homeApp.css" + "?" + Constants.FileRandomHash)">
+@RenderBody()
+
+@* This partial script render makes the initApp.js code to be executed. This JS makes window.ParcelApp object existing *@
+@await Html.PartialAsync("~/Views/JsLinks/_parcelInitApp_js.cshtml")
+@await RenderSectionAsync("scripts", required: false)
+</body>
+</html>
